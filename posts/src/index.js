@@ -10,6 +10,10 @@ app.use(cors());
 
 const posts = {};
 
+app.get('/posts', (req, res) => {
+  res.send(posts);
+});
+
 app.post('/events', (req, res) => {
   console.log("Received event", req.body.type);
   res.send({})

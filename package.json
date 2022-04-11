@@ -1,0 +1,25 @@
+{
+  "name": "mini-microservice-app",
+  "private": true,
+  "workpaces": [
+    "bus",
+    "client",
+    "comments",
+    "moderation",
+    "posts",
+    "query"
+  ],
+  "scripts": {
+    "bus:start": "yarn --cwd bus start",
+    "client:start": "yarn --cwd client start",
+    "comments:start": "yarn --cwd comments start",
+    "moderation:start": "yarn --cwd moderation start",
+    "posts:start": "yarn --cwd posts start",
+    "query:start": "yarn --cwd query start",
+    "run:all": "npm-run-all --parallel bus:start comments:start moderation:start query:start"
+  },
+  "dependencies": {
+    "wsrun": "^5.2.4",
+    "yarn-run-all": "^3.1.1"
+  }
+}
