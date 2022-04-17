@@ -6,7 +6,7 @@ const PostCreate = () => {
 
   const onClickPostButtonHandler = async (event) => {
     event.preventDefault();
-    await axios.post('http://localhost:4000/post', {
+    await axios.post('http://posts.com/posts/create', {
       title,
     });
 

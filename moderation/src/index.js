@@ -15,7 +15,7 @@ app.post('/events', async (req, res) => {
     // check whether it contains string "orange" for the status
     console.log("content", content)
     const status = content.includes('orange') ? 'rejected' : 'approved';
-    await axios.post('http://localhost:4005/events', {
+    await axios.post('http://bus-srv:4005/events', {
       type: 'CommentUpdated',
       data: {
         id,

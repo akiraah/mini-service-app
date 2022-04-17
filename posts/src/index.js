@@ -19,17 +19,20 @@ app.post('/events', (req, res) => {
   res.send({})
 });
 
-app.post('/post', async (req, res) => {
+app.post('/posts/create', async (req, res) => {
+  console.log("Test")
   const id = randomBytes(4).toString('hex');
   const { title } = req.body;
   posts[id] = {
     id,
     title,
   };
-  await await axios.post('http://localhost:4005/events', {
+  await axios.post('http://bus-srv:4005/events', {
     type: 'PostCreated',
     data: { id, title },
-  })
+  }).catch((err) => {
+      console.log(err.message);
+    });
   res.status(201).send(posts[id]);
 });
 

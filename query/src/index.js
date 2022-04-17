@@ -28,7 +28,8 @@ const handleEvent = (data, type) => {
   }
 };
 
-app.get('/post', (req, res) => {
+app.get('/posts', (req, res) => {
+  console.log('query service - get posts');
   res.send(posts);
 });
 
@@ -41,7 +42,7 @@ app.post('/events', (req, res) => {
 app.listen(4002, async () => {
   console.log('listening on 4002');
   try {
-    const response = await axios.get("http://localhost:4005/events")
+    const response = await axios.get("http://bus-srv:4005/events")
     console.log("response from bus")
     console.log(response.data)
 

@@ -4,11 +4,13 @@ import axios from 'axios';
 import CreateComment from './CreateComment'
 import CommentList from './CommentList'
 
+const GET_POSTS_URL = "http://posts.com/posts"
+
 const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const getPosts = async () => {
-    const response = await axios.get('http://localhost:4002/post');
+    const response = await axios.get(GET_POSTS_URL);
     setPosts(response.data);
   };
 
