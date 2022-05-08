@@ -37,4 +37,4 @@ spec:
               service:
                 name: client-cluster-srv
                 port:
-                  number: 80
+                  number: 3000

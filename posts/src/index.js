@@ -15,25 +15,28 @@ app.get('/posts', (req, res) => {
 });
 
 app.post('/events', (req, res) => {
-  console.log("Received event", req.body.type);
-  res.send({})
+  console.log('Received event', req.body.type);
+  res.send({});
 });
 
-app.post('/posts/create', async (req, res) => {
-  console.log("Test")
+app.post('/posts/create', async (req, res, next) => {
   const id = randomBytes(4).toString('hex');
   const { title } = req.body;
   posts[id] = {
     id,
     title,
   };
-  await axios.post('http://bus-srv:4005/events', {
-    type: 'PostCreated',
-    data: { id, title },
-  }).catch((err) => {
-      console.log(err.message);
+  try {
+    await axios.post('http://bus-srv:4005/events', {
+      type: 'PostCreated',
+      data: { id, title },
     });
+  } catch (err) {
+    console.log(err.message);
+  }
+
   res.status(201).send(posts[id]);
+  next()
 });
 
 app.listen(4000, () => {

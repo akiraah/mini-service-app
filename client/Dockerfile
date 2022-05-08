@@ -1,9 +1,12 @@
-FROM node:alpine AS builder
+FROM node:17-alpine
+    
+# Add the following lines
+ENV CI=true
+ENV WDS_SOCKET_PORT=0
+    
 WORKDIR /app
-COPY package.json .
+COPY package.json ./
 RUN npm install
-COPY . .
-CMD ["npm", "run", "build"]
-
-FROM nginx:alpine
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY ./ ./
+    
+CMD ["npm", "start"]

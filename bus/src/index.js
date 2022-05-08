@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 const events = [];
 
 app.post('/events', async (req, res) => {
+  console.log("event bus")
   const event = req.body;
   await axios.post('http://posts-cluster-srv:4000/events', event)
   await axios.post('http://comments-cluster-srv:4001/events', event)
